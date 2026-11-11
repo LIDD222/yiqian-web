@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>以前。現在。未來｜台灣怪談地圖卡牌冒險</title>
+<meta name="description" content="在 2.5D 真實台灣地圖上，以前、現在、未來三個時代切換，走訪龍山寺、九份、赤崁樓等地點，解謎、出牌守夜、收集 110 張怪談圖鑑。免費網頁遊戲，手機電腦打開就能玩，存檔只留在你的瀏覽器。">
+<meta name="theme-color" content="#141026">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="以前現在未來">
+<meta name="screen-orientation" content="portrait">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta property="og:url" content="https://lidd222.github.io/yiqian-web/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="以前。現在。未來｜台灣怪談地圖卡牌冒險">
+<meta property="og:description" content="2.5D 真實台灣地圖 × 三個時代 × 110 張怪談圖鑑。手機電腦瀏覽器直接玩。">
+<meta property="og:image" content="https://lidd222.github.io/yiqian-web/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="zh_TW">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="以前。現在。未來">
+<meta name="twitter:description" content="2.5D 真實台灣地圖 × 三個時代 × 110 張怪談圖鑑。">
+<meta name="twitter:image" content="https://lidd222.github.io/yiqian-web/og-image.png">
+<style>
+html, body { margin: 0; padding: 0; border: 0; height: 100%; }
+body {
+	background: radial-gradient(ellipse at 50% 40%, #2a1a4a 0%, #120b22 55%, #07040f 100%);
+	color: #efe2c4; overflow: hidden; touch-action: none;
+	font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+	-webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent;
+}
+#canvas { display: block; position: fixed; inset: 0; width: 100vw; height: 100vh; height: 100dvh; }
+#canvas:focus { outline: none; }
+#boot {
+	position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+	padding: env(safe-area-inset-top) 24px env(safe-area-inset-bottom); z-index: 5;
+	background: radial-gradient(ellipse at 50% 35%, #2d1c50 0%, #141026 60%, #07040f 100%);
+	transition: opacity .5s ease;
+}
+#boot.hide { opacity: 0; pointer-events: none; }
+.logo { width: 132px; height: 132px; border-radius: 30px; box-shadow: 0 10px 40px rgba(217,130,43,.45); animation: float 3.2s ease-in-out infinite; }
+@keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+h1 { font-size: 30px; letter-spacing: .12em; margin: 26px 0 6px; color: #f3d9a4; text-shadow: 0 2px 12px rgba(217,130,43,.5); }
+.sub { font-size: 14px; color: #b9a6d6; margin-bottom: 30px; letter-spacing: .08em; }
+.eras { display: flex; gap: 10px; margin-bottom: 28px; }
+.eras span { padding: 4px 12px; border-radius: 999px; font-size: 13px; border: 1px solid rgba(243,217,164,.35); }
+.eras span:nth-child(1) { color: #f0c27a; } .eras span:nth-child(2) { color: #ff8ad0; } .eras span:nth-child(3) { color: #6ff3ff; }
+.bar { width: min(320px, 78vw); height: 14px; border-radius: 999px; background: rgba(239,226,196,.12); overflow: hidden; border: 1px solid rgba(239,226,196,.25); }
+.fill { height: 100%; width: 0%; border-radius: 999px; background: linear-gradient(90deg, #d9822b, #f3c26b); transition: width .2s; box-shadow: 0 0 12px rgba(243,194,107,.6); }
+.meta { margin-top: 12px; font-size: 14px; color: #d8c39a; font-variant-numeric: tabular-nums; min-height: 20px; }
+.tip { margin-top: 26px; font-size: 13px; color: #8d7bb0; max-width: 320px; text-align: center; line-height: 1.6; min-height: 42px; }
+.err { display: none; margin-top: 18px; text-align: center; max-width: 320px; line-height: 1.6; font-size: 14px; color: #ffd7c4; }
+.err button { margin-top: 12px; font: inherit; font-weight: 700; font-size: 16px; color: #fff; background: #d9822b; border: 0; border-radius: 16px; padding: 12px 30px; box-shadow: 0 5px 0 #8f4f14; cursor: pointer; }
+.links { position: fixed; bottom: calc(10px + env(safe-area-inset-bottom)); left: 0; right: 0; text-align: center; font-size: 12px; }
+.links a { color: #8d7bb0; margin: 0 8px; text-decoration: none; }
+</style>
+<link id="-gd-engine-icon" rel="icon" type="image/png" href="index.icon.png" />
+<link rel="apple-touch-icon" href="index.apple-touch-icon.png"/>
+
+</head>
+<body>
+<canvas id="canvas">您的瀏覽器不支援 canvas。</canvas>
+<noscript>請開啟 JavaScript 才能遊玩。</noscript>
+<div id="boot">
+	<img class="logo" src="icon-192.png" alt="">
+	<h1>以前。現在。未來</h1>
+	<div class="sub">台灣怪談地圖・卡牌守夜</div>
+	<div class="eras"><span>以前</span><span>現在</span><span>未來</span></div>
+	<div class="bar"><div class="fill" id="fill"></div></div>
+	<div class="meta" id="meta">準備中…</div>
+	<div class="tip" id="tip">存檔只會留在這個瀏覽器，不需要帳號。</div>
+	<div class="err" id="err"><div id="errmsg"></div><button id="retry">重新載入</button></div>
+	<div class="links"><a href="about.html">關於與授權</a><a href="privacy.html">隱私</a><a href="odds.html">機率公開</a></div>
+</div>
+<script>window.YIQIAN_ART_VER = "2506565824_9528904";</script>
+<script src="index.js"></script>
+<script>
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":4151792,"index.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
+const GODOT_THREADS_ENABLED = false;
+(function () {
+	const boot = document.getElementById('boot');
+	const fill = document.getElementById('fill');
+	const meta = document.getElementById('meta');
+	const tip = document.getElementById('tip');
+	const err = document.getElementById('err');
+	const tips = ['雙指捏合縮放地圖，雙指旋轉視角。', '點地點膠囊牌，再按「帶我去」。', '符剋鬼、程式剋機、香火剋魂。', '切換「以前／現在／未來」看同一座城的三種樣子。'];
+	let ti = 0; const tipTimer = setInterval(() => { tip.textContent = tips[ti++ % tips.length]; }, 3200);
+	function fail(e) {
+		console.error(e);
+		clearInterval(tipTimer);
+		document.getElementById('errmsg').textContent = '載入失敗：' + (e && e.message ? e.message : String(e)) + '。請確認網路後重試；若持續失敗，請改用最新版 Chrome / Safari。';
+		err.style.display = 'block';
+		meta.textContent = '';
+	}
+	document.getElementById('retry').onclick = () => location.reload();
+	const missing = Engine.getMissingFeatures({ threads: GODOT_THREADS_ENABLED });
+	if (missing.length) { fail(new Error('瀏覽器缺少功能：' + missing.join('、'))); return; }
+	window.yiqianLoadStart = performance.now();
+	const engine = new Engine(GODOT_CONFIG);
+	function flushSave() { if (window.__yiqianSave) window.__yiqianSave(); }
+	document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') flushSave(); });
+	window.addEventListener('pagehide', flushSave);
+	engine.startGame({
+		onProgress: function (cur, total) {
+			if (total > 0) {
+				const pct = Math.min(100, Math.floor(cur / total * 100));
+				fill.style.width = pct + '%';
+				meta.textContent = (cur / 1048576).toFixed(1) + ' / ' + (total / 1048576).toFixed(1) + ' MB・' + pct + '%';
+			} else if (cur > 0) {
+				meta.textContent = (cur / 1048576).toFixed(1) + ' MB';
+			}
+		},
+	}).then(() => {
+		window.yiqianEngineStarted = performance.now();
+		meta.textContent = '啟動中…';
+		fill.style.width = '100%';
+		clearInterval(tipTimer);
+		setTimeout(() => { boot.classList.add('hide'); setTimeout(() => boot.remove(), 600); }, 250);
+	}, fail);
+	const ua = navigator.userAgent || '';
+	if (/iPhone|iPad|Android/i.test(ua) && screen.orientation && screen.orientation.lock) { screen.orientation.lock('portrait').catch(() => {}); }
+}());
+</script>
+</body>
+</html>
+

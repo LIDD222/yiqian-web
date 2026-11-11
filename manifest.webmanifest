@@ -1,0 +1,16 @@
+{
+  "name": "以前。現在。未來｜台灣怪談地圖卡牌冒險",
+  "short_name": "以前現在未來",
+  "description": "2.5D 真實台灣地圖 × 三個時代 × 110 張怪談圖鑑的網頁卡牌冒險。",
+  "lang": "zh-Hant-TW",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#141026",
+  "theme_color": "#141026",
+  "icons": [
+    {"src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"}
+  ]
+}

@@ -1,0 +1,11 @@
+:root { color-scheme: dark; }
+body { margin: 0; background: #141026; color: #efe2c4; font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif; line-height: 1.75; }
+main { max-width: 760px; margin: 0 auto; padding: calc(24px + env(safe-area-inset-top)) 22px calc(40px + env(safe-area-inset-bottom)); }
+h1 { color: #f3d9a4; font-size: 30px; margin: 18px 0 12px; }
+h2 { color: #f3c26b; font-size: 21px; margin-top: 30px; border-bottom: 1px solid #3a2c55; padding-bottom: 6px; }
+a { color: #ffb36b; } a.back { display: inline-block; padding: 12px 18px; background: #2a1f42; border-radius: 14px; text-decoration: none; }
+pre { white-space: pre-wrap; background: #1d1636; padding: 14px; border-radius: 12px; font-size: 13px; color: #d8c39a; }
+table { width: 100%; border-collapse: collapse; font-size: 15px; } th, td { padding: 10px 8px; border-bottom: 1px solid #3a2c55; text-align: left; vertical-align: top; }
+.dot { display: inline-block; width: 12px; height: 12px; border-radius: 6px; margin-right: 8px; }
+ul.src li { font-size: 14px; } .note { color: #a596c4; font-size: 14px; }
+footer { margin-top: 40px; font-size: 14px; color: #a596c4; }
