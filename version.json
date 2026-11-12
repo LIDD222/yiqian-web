@@ -1,5 +1,5 @@
 {
-	"built_at": "2026-11-12T12:48:54",
+	"built_at": "2026-11-12T13:11:13",
 	"content_note": "網頁重整更新：內容雜湊與存檔保留",
 	"files": {
 		"art.pck": "art.7a169275f9f6c9b5.pck",
@@ -78,8 +78,8 @@
 		"index.audio.position.worklet.js": "index.audio.position.worklet.be33985bc7160d6b.js",
 		"index.audio.worklet.js": "index.audio.worklet.5b476a9c9ce642c0.js",
 		"index.js": "index.33c94cb3175f3333.js",
-		"index.pck": "index.afc09e5e8d4d17f9.pck",
+		"index.pck": "index.d6210b7d10625bae.pck",
 		"index.wasm": "index.fc74679e3b97f768.wasm"
 	},
-	"version": "v2.0.0+51800ee1815e"
+	"version": "v2.0.0+8222ed5b7fe2"
 }
